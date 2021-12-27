@@ -22,7 +22,9 @@ wsServer.on("connection", (socket) => {
   console.log("Connected to Browser ✅");
   socket.on("close", () => console.log("disconected to browser"));
   socket.send("Welcome");
-  socket.on("message", (m) => console.log(m.toString()));
+  socket.on("message", (m) => {
+    socket.send(m + "from back");
+  });
 });
 
 server.listen(3000, handleListen);
