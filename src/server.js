@@ -13,9 +13,16 @@ app.get("/", (req, res) => res.render("home"));
 app.get("/*", (req, res) => res.redirect("/"));
 
 const handleListen = () =>
-  console.log("🚀 Listening Server:http://localhost:3000");
+  console.log("🚀 Listening Server:http,ws://localhost:3000");
 
 const server = http.createServer(app);
 const wsServer = new WebSocket.Server({ server });
+
+wsServer.on("connection", (socket) => {
+  console.log("Connected to Browser ✅");
+  socket.on("close", () => console.log("disconected to browser"));
+  socket.send("Welcome");
+  socket.on("message", (m) => console.log(m.toString()));
+});
 
 server.listen(3000, handleListen);
