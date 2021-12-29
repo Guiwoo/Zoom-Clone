@@ -43,9 +43,12 @@ wsServer.on("connection", (socket) => {
 */
 
 io.on("connection", (socket) => {
+  socket.onAny((event) => {
+    console.log(`Socket event : ${event}`);
+  });
   socket.on("enter_room", (msg, done) => {
-    console.log(msg);
-    setTimeout(done, 4000);
+    socket.join(msg);
+    done();
   });
 });
 
