@@ -9,20 +9,11 @@ html(lang="en")
     body
         header 
             h1 Goom
-        main 
-            div#welcome 
-                form
-                    input#rnum(placeholder="Room name",required,type="text")
-                    input#name(placeholder="Nickname",required,type="text")
-                    button Save
-                h4 Open Rooms
-                ul 
-                
-            #room
-                h3 
-                ul
-                form#msg
-                    input(placeholder="message",required,type="text")
-                    button Send Message
+        main
+            div#myStream 
+                video#myFace(controls,autoplay,playsinline, width="400",height="400")
+                button#mute Mute
+                button#camera Turn Camera Off
+                select#cameras
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
